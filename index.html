@@ -84,7 +84,8 @@
             color: #ffffff;
         }
         @media print {
-            .print-btn, .form-container { display: none; }
+            .print-btn, .form-container, .delete-btn { display: none; }
+            table { display: table; }
         }
     </style>
 </head>
@@ -98,7 +99,7 @@
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter name" required><br><br>
                 <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required><br><br>
+                <input type="date" id="Date" name="date" required><br><br>
                 <label for="eventName">Event name:</label>
                 <input type="text" id="eventName" name="eventName" placeholder="Enter event name" required>
             </form>
@@ -125,6 +126,7 @@
             <th>Mahal name</th>
             <th>Destination name</th>
             <th>Location</th>
+            <th>Actions</th>
         </tr>
     </table>
 
@@ -151,8 +153,16 @@
                 cell.textContent = cellData;
             });
 
+            const actionCell = newRow.insertCell();
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+            deleteButton.onclick = () => table.deleteRow(newRow.rowIndex);
+            actionCell.appendChild(deleteButton);
+
             document.getElementById("eventForm").reset();
         }
     </script>
 </body>
 </html>
+
